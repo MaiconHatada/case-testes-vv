@@ -4,7 +4,7 @@ Cypress.Commands.add('acessandoSeeOffer', () => {
     cy.get('#see_offer_btn').click().wait(3000)
 })
 
-Cypress.Commands.add('validandoAcessoSeeOffer', () => {
+Cypress.Commands.add('validandoEspecificacoesDoProduto', () => {
     cy.get('#mainImg').should('be.visible')
 })
 
