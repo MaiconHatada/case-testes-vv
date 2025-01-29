@@ -1,11 +1,22 @@
-name: Teste Vivo
-on: push
+name: Teste Vivo # Nome do workflow
+on: push # Dispara o workflow em um push para o repositório
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Define o sistema operacional do runner como Ubuntu
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout # Nome do passo
+        uses: actions/checkout@v2 # Usa a ação de checkout para clonar o repositório
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
+      - name: Executar Cypress # Nome do passo
+        uses: cypress-io/github-action@v2 # Usa a ação do Cypress para executar testes
+        with:
+          config-file: cypress.config.js # Especifica o arquivo de configuração do Cypress
+
+      - name: Salvar artefatos de teste # Nome do passo
+        if: failure() # Executa este passo apenas se houver uma falha nos testes
+        uses: actions/upload-artifact@v3 # Usa a ação para fazer upload de artefatos
+        with:
+          name: cypress-artifacts # Nome do artefato
+          path: | # Caminhos dos artefatos a serem salvos
+            cypress/screenshots # Capturas de tela dos testes Cypress
+            cypress/videos # Vídeos dos testes Cypress
