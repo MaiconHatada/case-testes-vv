@@ -11,7 +11,7 @@ describe('local dos testes', () => {
 
     it('clicando na opção See Offer e validando especificações do produto', () => {
        
-        cy.validandoAcessoSeeOffer()
+        cy.validandoEspecificacoesDoProduto()
     })
    
     it('Alterando a cor do produto selecionado', () => {
