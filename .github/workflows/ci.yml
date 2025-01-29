@@ -7,7 +7,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cypress run
+      - name: Executar Cypress
         uses: cypress-io/github-action@v2
         with:
           config-file: cypress.config.js
+
+      - name: Salvar artefatos de teste
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
